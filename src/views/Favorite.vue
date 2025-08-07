@@ -1,3 +1,44 @@
+<script setup>
+import { ref, computed, onMounted } from 'vue'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
+
+const favorites = ref([])
+const searchQuery = ref('')
+const router = useRouter()
+
+const goHome = () => router.push('/')
+
+const loadFavorites = async () => {
+  try {
+    const response = await axios.get(`${import.meta.env.VITE_FAVORITES_API_URL}favorites`)
+    favorites.value = response.data
+  } catch (error) {
+    console.error('Erro ao carregar favoritos:', error)
+  }
+}
+
+const removeFavorite = async (id) => {
+  try {
+    await axios.delete(`${import.meta.env.VITE_FAVORITES_API_URL}favorites/${id}`)
+    favorites.value = favorites.value.filter(fav => fav.id !== id)
+  } catch (error) {
+    console.error('Erro ao remover favorito:', error)
+  }
+}
+
+const filteredFavorites = computed(() => {
+  if (!searchQuery.value.trim()) return favorites.value
+  return favorites.value.filter(fav =>
+    fav.title.toLowerCase().includes(searchQuery.value.toLowerCase())
+  )
+})
+
+onMounted(() => {
+  loadFavorites()
+})
+</script>
+
 <template>
   <nav class="bg-gray-900 text-gray-300 px-5 py-5 flex items-center justify-between">
     <div class="flex items-center gap-3 text-orange-500 font-bold text-2xl select-none">
@@ -19,7 +60,7 @@
     </div>
 
     <button
-      @click="router.push('/')"
+      @click="goHome"
       class="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-400 text-white transition-all duration-200 hover:border-orange-500 hover:shadow-[0_0_10px_4px_rgba(255,115,0,0.6)] hover:scale-105"
       aria-label="Voltar para a lista de filmes"
     >
@@ -83,42 +124,3 @@
     Nenhum favorito encontrado.
   </div>
 </template>
-
-<script setup>
-import { ref, computed, onMounted } from 'vue'
-import axios from 'axios'
-import { useRouter } from 'vue-router'
-
-const favorites = ref([])
-const searchQuery = ref('')
-const router = useRouter()
-
-const loadFavorites = async () => {
-  try {
-    const response = await axios.get(`http://127.0.0.1:9000/api/favorites`)
-    favorites.value = response.data
-  } catch (error) {
-    console.error('Erro ao carregar favoritos:', error)
-  }
-}
-
-const removeFavorite = async (id) => {
-  try {
-    await axios.delete(`http://127.0.0.1:9000/api/favorites/${id}`)
-    favorites.value = favorites.value.filter(fav => fav.id !== id)
-  } catch (error) {
-    console.error('Erro ao remover favorito:', error)
-  }
-}
-
-const filteredFavorites = computed(() => {
-  if (!searchQuery.value.trim()) return favorites.value
-  return favorites.value.filter(fav =>
-    fav.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-  )
-})
-
-onMounted(() => {
-  loadFavorites()
-})
-</script>

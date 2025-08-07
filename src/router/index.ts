@@ -1,15 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Search from '../views/Search.vue';
-import NotFoundView from '../views/NotFoundView.vue';
-import Favorites from '../views/Favorite.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: Search },
-    { path: '/Favorites', component: Favorites },
-    { path: '/:pathMatch(.*)*', component: NotFoundView },
-  ],
+    {
+      path: '/',
+      name: 'Search',
+      component: () => import('@/views/Search.vue')
+    },
+    {
+      path: '/favorites',
+      name: 'Favorites',
+      component: () => import('@/views/Favorite.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('@/views/NotFoundView.vue')
+    }
+  ]
 });
 
 export default router;

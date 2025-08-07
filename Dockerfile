@@ -1,4 +1,3 @@
-# First Stage: Build the application.
 FROM node:22-alpine AS build
 
 WORKDIR /app
@@ -11,7 +10,6 @@ COPY . .
 
 RUN npm run build
 
-# Second Stage: Serve the app with nginx server.
 FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
