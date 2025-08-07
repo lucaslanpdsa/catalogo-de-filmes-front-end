@@ -1,4 +1,4 @@
-# Desafio Tray Frontend
+# Catalogo de filmes Frontend
 
 ## Pré-requisitos
 
@@ -8,8 +8,8 @@
 
 1. Clone o repositório:
 ```bash
-git clone https://gitlab.com/brunno313/desafio-tray-frontend.git
-cd desafio-tray-frontend
+git clone https://github.com/lucaslanpdsa/catalogo-de-filmes-front-end
+cd catalogo-de-filmes-frontend
 ```
 2. Crie um arquivo `.env` baseado no `.env.example`
 ```bash
@@ -17,7 +17,8 @@ cp .env.example .env
 ```
 3. Configure a URL da API no `.env`:
 ```env
-VITE_API_URL=http://localhost:9000
+VITE_TMDB_API_KEY=c2bd86974a6def852978250c9a01fa77
+FAVORITES_API_URL=http://127.0.0.1:8000/api/
 ```
 
 ## Executando o projeto
@@ -30,36 +31,27 @@ docker-compose up -d --build
 
 ## Rotas da aplicação
 
-- Login com Google (redireciona para o backend). -> `http://localhost:3000/` ou `http://localhost:3000/login`
-- Formulário de cadastro após autenticação. -> `http://localhost:3000/register`
-- Listagem de usuários com filtros (nome e CPF) e paginação. -> `http://localhost:3000/users`
+
 
 ## Testando performance
 
-- O backend já inclui 150.000 usuários fictícios. Use o campo de busca para testar a otimização.
 
-## Rodando testes
-
-Para rodar os testes unitários, rode o seguinte comando:
-```bash
-npm run test
-```
 
 ## Como ficou
 
 <details>
-<summary>Tela inicial</summary>
+<summary> </summary>
 <img src="./doc/login.png">
 </details>
 <details>
-<summary>Página de cadastro de usuário</summary>
-<img src="./doc/registration.png">
+<summary> </summary>
+<img src="./doc/ .png">
 </details>
 <details>
-<summary>Listagem de usuários cadastrados</summary>
-<img src="./doc/user-list.png">
+<summary> </summary>
+<img src="./doc/ .png">
 </details>
 <details>
-<summary>Página de não encontrado</summary>
-<img src="./doc/page-not-found.png">
+<summary> </summary>
+<img src="./doc/ .png">
 </details>

@@ -1,0 +1,22 @@
+stages:
+  - install
+  - test
+
+image: node:22
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+
+test:
+  stage: test
+  script:
+    - npm run test
