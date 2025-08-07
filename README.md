@@ -41,18 +41,16 @@ src/views/Favorite.vue -> responsavel pela exibe a listagem de filmes favoritos
 ## Como ficou
 
 <details>
-<summary> </summary>
-<img src="./doc/">
+<summary>Home</summary>
+<img src="./doc/home.png">
 </details>
 <details>
-<summary> </summary>
-<img src="./doc/ .png">
+<summary>Listagem de favoritos</summary>
+<img src="./doc/favoritos.png">
 </details>
 <details>
-<summary> </summary>
-<img src="./doc/ .png">
+<summary>Pagina Not Found</summary>
+<img src="./doc/page-not-found.png">
 </details>
 <details>
-<summary> </summary>
-<img src="./doc/ .png">
 </details>
