@@ -57,3 +57,7 @@ docker compose up -d --build
  <summary>Video mostrando o projeto, clique no link abaixo</summary>
  https://www.veed.io/view/pt-PT/e46c9ec5-d16b-4e90-900b-dfbe29eb6206?panel=share
 </details>
+<details>
+ <summary>Video mostrando como rodar o projeto no local</summary>
+ https://www.veed.io/view/985bd424-fa8b-42a8-9c00-108f10665041?panel=share
+</details>
