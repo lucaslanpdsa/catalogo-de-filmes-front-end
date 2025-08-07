@@ -53,4 +53,6 @@ src/views/Favorite.vue -> responsavel pela exibe a listagem de filmes favoritos
 <img src="./doc/page-not-found.png">
 </details>
 <details>
+ <summary>Video mostrando o projeto, clique no link abaixo</summary>
+ https://www.veed.io/view/pt-PT/e46c9ec5-d16b-4e90-900b-dfbe29eb6206?panel=share
 </details>
