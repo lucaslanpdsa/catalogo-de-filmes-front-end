@@ -78,7 +78,7 @@ const filteredMovies = computed(() =>
 
 const loadFavorites = async () => {
   try {
-    const res = await axios.get('http://127.0.0.1:8000/api/favorites')
+    const res = await axios.get('http://127.0.0.1:9000/api/favorites')
     favoriteList.value = res.data
     favorites.value = new Set(res.data.map((fav) => fav.movie_id))
   } catch {
@@ -95,12 +95,12 @@ const toggleFavorite = async (movie) => {
     if (isFav) {
       const fav = favoriteList.value.find((f) => f.movie_id === movie.id)
       if (!fav) return
-      await axios.delete(`http://127.0.0.1:8000/api/favorites/${fav.id}`)
+      await axios.delete(`http://127.0.0.1:9000/api/favorites/${fav.id}`)
       favorites.value.delete(movie.id)
       favoriteList.value = favoriteList.value.filter((f) => f.movie_id !== movie.id)
       alert(`Filme "${movie.title}" removido dos favoritos.`)
     } else {
-      const res = await axios.post('http://127.0.0.1:8000/api/favorites', {
+      const res = await axios.post('http://127.0.0.1:9000/api/favorites', {
         movie_id: movie.id,
         title: movie.title,
         poster_path: movie.poster_path,

@@ -95,7 +95,7 @@ const router = useRouter()
 
 const loadFavorites = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/favorites`)
+    const response = await axios.get(`http://127.0.0.1:9000/api/favorites`)
     favorites.value = response.data
   } catch (error) {
     console.error('Erro ao carregar favoritos:', error)
@@ -104,7 +104,7 @@ const loadFavorites = async () => {
 
 const removeFavorite = async (id) => {
   try {
-    await axios.delete(`http://127.0.0.1:8000/api/favorites/${id}`)
+    await axios.delete(`http://127.0.0.1:9000/api/favorites/${id}`)
     favorites.value = favorites.value.filter(fav => fav.id !== id)
   } catch (error) {
     console.error('Erro ao remover favorito:', error)

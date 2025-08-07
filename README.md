@@ -18,7 +18,7 @@ cp .env.example .env
 3. Configure a URL da API no `.env`:
 ```env
 VITE_TMDB_API_KEY=c2bd86974a6def852978250c9a01fa77
-FAVORITES_API_URL=http://127.0.0.1:8000/api/
+FAVORITES_API_URL=http://127.0.0.1:9000/api/
 ```
 
 ## Executando o projeto
