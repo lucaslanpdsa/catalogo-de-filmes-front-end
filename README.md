@@ -34,9 +34,10 @@ docker compose up -d --build
  Listagem de filmes favoritados com opçao de desfavoritar -> `http://localhost:3000/favorites`
 
 ## Principais arquivos
-src/router/index.ts -> responsavel por definir as rotas da aplicação
-src/views/Search.vue -> responsavel pela tela que exibe a listagem de filmes padrão
-src/views/Favorite.vue -> responsavel pela exibe a listagem de filmes favoritos
+
+- `src/router/index.ts`: responsável por definir as rotas da aplicação
+- `src/views/Search.vue`: responsável pela tela que exibe a listagem de filmes padrão
+- `src/views/Favorite.vue`: responsável por exibir a listagem de filmes favoritos
 
 ## Como ficou
 
