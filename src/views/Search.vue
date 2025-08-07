@@ -18,6 +18,7 @@ const searchQuery = ref('')
 const selectedGenreId = ref('')
 const genres = ref([])
 const router = useRouter()
+const favoritesApiBaseUrl = import.meta.env.VITE_FAVORITES_API_URL;
 
 const tmdbApiBaseUrl = 'https://api.themoviedb.org/3/';
 
@@ -78,7 +79,7 @@ const filteredMovies = computed(() =>
 
 const loadFavorites = async () => {
   try {
-    const res = await axios.get(`${import.meta.env.VITE_FAVORITES_API_URL}favorites`)
+    const res = await axios.get(`${favoritesApiBaseUrl}favorites`)
     favoriteList.value = res.data
     favorites.value = new Set(res.data.map((fav) => fav.movie_id))
   } catch {
@@ -95,12 +96,12 @@ const toggleFavorite = async (movie) => {
     if (isFav) {
       const fav = favoriteList.value.find((f) => f.movie_id === movie.id)
       if (!fav) return
-      await axios.delete(`${import.meta.env.VITE_FAVORITES_API_URL}favorites/${fav.id}`)
+      await axios.delete(`${favoritesApiBaseUrl}favorites/${fav.id}`)
       favorites.value.delete(movie.id)
       favoriteList.value = favoriteList.value.filter((f) => f.movie_id !== movie.id)
       alert(`Filme "${movie.title}" removido dos favoritos.`)
     } else {
-      const res = await axios.post(`${import.meta.env.VITE_FAVORITES_API_URL}favorites`, {
+      const res = await axios.post(`${favoritesApiBaseUrl}favorites`, {
         movie_id: movie.id,
         title: movie.title,
         poster_path: movie.poster_path,
