@@ -25,23 +25,24 @@ FAVORITES_API_URL=http://127.0.0.1:8000/api/
 
 1. Inicie os containers:
 ```bash
-docker-compose up -d --build
+docker compose up -d --build
 ```
 2. Acesse a aplicação em http://localhost:3000.
 
 ## Rotas da aplicação
+ Listagem de filmes com opção de pesquisar, favoritar, remover dos favoritos e filtrar por genero -> `http://localhost:3000`
+ Listagem de filmes favoritados com opçao de desfavoritar -> `http://localhost:3000/favorites`
 
-
-
-## Testando performance
-
-
+## Principais arquivos
+src/router/index.ts -> responsavel por definir as rotas da aplicação
+src/views/Search.vue -> responsavel pela tela que exibe a listagem de filmes padrão
+src/views/Favorite.vue -> responsavel pela exibe a listagem de filmes favoritos
 
 ## Como ficou
 
 <details>
 <summary> </summary>
-<img src="./doc/login.png">
+<img src="./doc/">
 </details>
 <details>
 <summary> </summary>
