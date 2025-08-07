@@ -9,7 +9,7 @@
 1. Clone o repositório:
 ```bash
 git clone https://github.com/lucaslanpdsa/catalogo-de-filmes-front-end
-cd catalogo-de-filmes-frontend
+cd catalogo-de-filmes-front-end
 ```
 2. Crie um arquivo `.env` baseado no `.env.example`
 ```bash
