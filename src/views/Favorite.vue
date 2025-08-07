@@ -19,7 +19,7 @@
     </div>
 
     <button
-      @click="router.push('/search')"
+      @click="router.push('/')"
       class="flex items-center gap-2 px-4 py-2 rounded-md border border-gray-400 text-white transition-all duration-200 hover:border-orange-500 hover:shadow-[0_0_10px_4px_rgba(255,115,0,0.6)] hover:scale-105"
       aria-label="Voltar para a lista de filmes"
     >
