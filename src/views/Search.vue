@@ -18,6 +18,8 @@ const searchQuery = ref('')
 const selectedGenreId = ref('')
 const genres = ref([])
 const router = useRouter()
+const currentPage = ref(1)
+const loadingMore = ref(false)
 const favoritesApiBaseUrl = import.meta.env.VITE_FAVORITES_API_URL;
 
 const tmdbApiBaseUrl = 'https://api.themoviedb.org/3/';
@@ -33,16 +35,33 @@ const loadGenres = async () => {
   }
 }
 
-const fetchMovies = async (category) => {
+const fetchMovies = async (category, page = 1) => {
   try {
+    if (page === 1) {
+      loadingMore.value = true
+    }
     const res = await axios.get(`${tmdbApiBaseUrl}movie/${category}`, {
-      params: { api_key: import.meta.env.VITE_TMDB_API_KEY, language: 'pt-BR', page: 1 },
+      params: { api_key: import.meta.env.VITE_TMDB_API_KEY, language: 'pt-BR', page },
     })
-    movies.value = res.data.results
+    if (page === 1) {
+      movies.value = res.data.results // primeira página substitui
+    } else {
+      movies.value = [...movies.value, ...res.data.results] // concatena páginas seguintes
+    }
   } catch (error) {
     console.error('Erro ao buscar filmes:', error)
-    movies.value = []
+    if (page === 1) {
+      movies.value = []
+    }
+  } finally {
+    loadingMore.value = false
   }
+}
+
+const loadMore = () => {
+  if (loadingMore.value) return
+  currentPage.value++
+  fetchMovies(activeTab.value, currentPage.value)
 }
 
 const searchMovies = async (term) => {
@@ -247,5 +266,17 @@ watch(activeTab, (newTab) => {
     <div v-else class="text-center text-gray-400 mt-6 pb-10">
       Nenhum filme para exibir.
     </div>
+  </div>
+  <div class="bg-neutral-900 pb-6 flex flex-col items-center">
+    <button
+      @click="loadMore"
+      :disabled="loadingMore"
+      class="bg-orange-600 hover:bg-orange-700 rounded py-3 px-6 font-semibold transition-colors disabled:opacity-50 block max-w-md mx-auto"
+    >
+      {{ loadingMore ? 'Carregando...' : 'Carregar Mais' }}
+    </button>
+    <p class="text-center text-gray-400 mt-2 max-w-md">
+      Filmes carregados: {{ movies.length }}
+    </p>
   </div>
 </template>
