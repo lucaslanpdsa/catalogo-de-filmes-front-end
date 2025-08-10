@@ -118,7 +118,6 @@ const toggleFavorite = async (movie) => {
       await axios.delete(`${favoritesApiBaseUrl}favorites/${fav.id}`)
       favorites.value.delete(movie.id)
       favoriteList.value = favoriteList.value.filter((f) => f.movie_id !== movie.id)
-      alert(`Filme "${movie.title}" removido dos favoritos.`)
     } else {
       const res = await axios.post(`${favoritesApiBaseUrl}favorites`, {
         movie_id: movie.id,
@@ -129,7 +128,6 @@ const toggleFavorite = async (movie) => {
       })
       favorites.value.add(movie.id)
       favoriteList.value.push(res.data)
-      alert(`Filme "${movie.title}" adicionado aos favoritos!`)
     }
   } catch (error) {
     console.error('Erro ao atualizar favorito:', error.response || error)
